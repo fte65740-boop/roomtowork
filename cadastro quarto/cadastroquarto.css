@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Google Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fffaf0;
+}
+
+.container {
+    width: 520px;
+    max-width: 100%;
+    background-color: #d8e5ff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    color: #010101;
+    padding: 30px 40px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.container h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.caixa-texto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    position: relative;
+}
+
+.caixa-texto input {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #1c479e;
+    border-radius: 40px;
+    font-size: 20px;
+    color: #010101;
+    padding: 10px 3px 10px 10px;
+}
+
+.caixa-texto input::placeholder {
+    color: #808080;
+}
+
+.caixa-texto i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.caixa-texto input[placeholder="DDD"] {
+    width: 73px;
+}
+
+.caixa-texto input[placeholder="Endereço:"],
+.caixa-texto input[placeholder="Número:"] {
+    width: 100%;
+}
+
+.caixa-data {
+    display: flex;
+    width: 100%;
+    margin: 30px 0;
+    position: relative;
+    gap: 20px;
+}
+
+.caixa-data input {
+    border: 2px solid #1c479e;
+    border-radius: 40px;
+    font-size: 15px;
+    color: #010101;
+    padding: 10px 10px 10px 15px;
+    flex: 1;
+    min-width: 0; /* evita que o input estoure o flex */
+}
+
+.caixa-data input::placeholder {
+    color: #808080;
+}
+
+.caixa-data input[placeholder="UF"] {
+    flex: 0 0 60px; /* tamanho fixo, não cresce nem encolhe */
+    width: 60px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Campos preenchidos automaticamente pelo CEP */
+.caixa-texto input:read-only,
+.caixa-data input:read-only {
+    background-color: #eef3ff;
+    color: #555;
+}
+
+/* Remove as setas de aumentar/diminuir nos campos numéricos */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.login {
+    width: 100%;
+    height: 50px;
+    background-color: #1c479e;
+    color: #fffaf0;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* ---------- ÁREA DE FOTOS ---------- */
+.area-fotos {
+    margin: 30px 0;
+}
+
+.upload-fotos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 24px 16px;
+    border: 2px dashed #1c479e;
+    border-radius: 20px;
+    background-color: #eef3ff;
+    color: #1c479e;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-fotos i {
+    font-size: 36px;
+}
+
+.upload-fotos span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.upload-fotos small {
+    font-size: 13px;
+    color: #555;
+}
+
+.upload-fotos.arrastando {
+    background-color: #c9dbff;
+}
+
+.upload-fotos.cheio {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.lista-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.lista-fotos:empty {
+    display: none;
+}
+
+.foto-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #1c479e;
+}
+
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.foto-item button {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(1, 1, 1, 0.7);
+    color: #fffaf0;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.foto-item button:hover {
+    background-color: #b3261e;
+}
+
+/* ---------- TIPO, PREÇO E DESCRIÇÃO (novos campos) ----------
+   Cole este bloco no FINAL do seu cadastroquarto.css
+   (ou deixe este arquivo ao lado e adicione um 2º <link> no HTML). */
+
+.campo-select {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #1c479e;
+    border-radius: 40px;
+    font-size: 20px;
+    color: #010101;
+    padding: 10px 15px;
+    background-color: #fff;
+}
+
+.caixa-texto.caixa-alta {
+    height: auto;
+}
+
+.campo-textarea {
+    width: 100%;
+    border: 2px solid #1c479e;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #010101;
+    padding: 12px 15px;
+    resize: vertical;
+}
+
+.campo-textarea::placeholder {
+    color: #808080;
+}

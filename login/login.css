@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Google sans", sans-serif;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #010101;
+    margin-bottom: 10px;
+}
+
+.back-btn:hover {
+    opacity: 0.6;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fffaf0;
+}
+
+h1{
+    align-items: center;
+}
+.container{
+    width: 420px;
+    background-color: #d8e5ff;
+    border: 2px solid rgba(255, 255, 255, a);
+    border-radius: 10px;
+    color: #010101;
+    padding: 30px 40px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.container h2{
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    border-color: #1c479e;
+    border: 2px solid 0px 2px 8px 0px;
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: #fffaf0;
+    padding: 20px 5px 20px 20px;
+}
+
+.input-box input::placeholder{
+    color: #010101;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin: -15px 0 15px;
+}
+
+/*
+    margin & padding
+
+    1 valor - margin: 20px - Todos os lados
+    2 valores - margin: 20px 30px - Em cima e embaixo, dos lados
+    3 valores - padding: 20px 10px 30px - Em cima, dos lados, embaixo
+    4 valores - margin: 10px 30px 12px 33px - Em cima, direita, embaixo, esquerda    
+*/
+
+.remember-forgot leabel input {
+    accent-color: #1c479e;
+    margin-right: 5px;
+}
+
+.remember-forgot a {
+    text-decoration: none;
+    color: #010101;
+    font-weight: 500;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.login {
+    width: 100%;
+    height: 50px;
+    background-color: #1c479e;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.login:hover {
+    background-color: transparent;
+    color: #010101;
+    transition: 0.2s;
+}
+
+.register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #010101;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

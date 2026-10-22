@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room2WORK — Catálogo de Escritórios</title>
+<link rel="stylesheet" href="quartos.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    <a href="quartos.html" class="logo-link">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    </a>
+  </h1>
+
+  <div class="search-box">
+    <input type="text" id="buscaTexto" placeholder="Buscar por nome ou bairro...">
+    <button title="Buscar">🔍</button>
+  </div>
+
+  <nav id="navLinks">
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="/login/login.html" class="login-btn">Login</a>
+  </nav>
+
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="page-title">
+  <h2>Catálogo de Escritórios</h2>
+  <p>Encontre o espaço ideal para o seu trabalho, filtrando por tipo, preço e capacidade.</p>
+</div>
+
+<div class="filtros">
+  <div class="filtros-linha">
+    <div class="filtro-grupo">
+      <span>Tipo de espaço</span>
+      <div class="chips" id="chipsTipo">
+        <div class="chip" data-tipo="privativa">Sala privativa</div>
+        <div class="chip" data-tipo="compartilhada">Estação compartilhada</div>
+        <div class="chip" data-tipo="reuniao">Sala de reunião</div>
+        <div class="chip" data-tipo="estudio">Estúdio criativo</div>
+      </div>
+    </div>
+
+    <div class="filtro-grupo">
+      <span>Preço máximo (por dia)</span>
+      <div class="range-field">
+        <input type="range" id="precoRange" min="30" max="300" step="10" value="300">
+        <span id="precoValor">R$ 300</span>
+      </div>
+    </div>
+
+    <div class="filtro-grupo">
+      <span>Capacidade mínima</span>
+      <div class="range-field">
+        <input type="range" id="capRange" min="1" max="20" step="1" value="1">
+        <span id="capValor">1 pessoa</span>
+      </div>
+    </div>
+
+    <button class="limpar-filtros" id="limparFiltros">Limpar filtros</button>
+  </div>
+</div>
+
+<p class="resultado-contagem" id="contagem"></p>
+
+<div class="catalogo" id="catalogo"></div>
+
+<footer>
+  <p>&copy; 2026 Room2WORK</p>
+</footer>
+
+<script>
+  /* ── Menu hamburguer (mobile) ── */
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    if (navLinks) navLinks.classList.toggle('open');
+  });
+
+  /* Escapa HTML para textos digitados por usuários (evita injeção) */
+  const esc = s => String(s).replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  /* ======= Salas fixas (exemplos) =======
+     As salas cadastradas pelo formulário são somadas a esta lista
+     automaticamente (veja carregarCadastrados() no final). */
+  const escritorios = [
+    { nome:"Sala Aurora",      bairro:"Centro",        tipo:"privativa",     preco:70,  capacidade:4,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1.jpg", link:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/sala-aurora/sala-auroras.html" },
+    { nome:"Hub Colmeia",      bairro:"Rocho",         tipo:"compartilhada", preco:60,  capacidade:1,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio2.jpg", link:"/Salas/hub%20colmeia/hub-colmeias.html" },
+    { nome:"Sala Bússola",     bairro:"Vila Yamada",   tipo:"reuniao",       preco:220, capacidade:10, foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio3.jpg", link:"/Salas/sala-bussola/sala-bussola.html" },
+    { nome:"Estúdio Nômade",   bairro:"Vila Xavier",   tipo:"estudio",       preco:150, capacidade:6,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4.jpg", link:"/Salas/estudio-nomade/estudio-nomade.html" },
+    { nome:"Sala Farol",       bairro:"Imperador",     tipo:"privativa",     preco:130, capacidade:2,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio5.jpg", link:"/Salas/sala-farol/sala-farol.html" },
+    { nome:"Coworking Ponto",  bairro:"Centro",        tipo:"compartilhada", preco:45,  capacidade:1,  foto:"/imagens/escritorio6.jpg", link:"/Salas/coworking-ponto/coworking-ponto.html" },
+    { nome:"Sala Órbita",      bairro:"Maria Luiza",   tipo:"reuniao",       preco:190, capacidade:8,  foto:"/imagens/escritorio7.jpg", link:"/Salas/sala-orbita/sala-orbita.html" },
+    { nome:"Ateliê Vento",     bairro:"Indaiá",        tipo:"estudio",       preco:170, capacidade:5,  foto:"/imagens/escritorio8.jpg", link:"/Salas/atelie-vento/atelie-vento.html" },
+  ];
+
+  const catalogoEl = document.getElementById('catalogo');
+  const contagemEl = document.getElementById('contagem');
+  const chips = document.querySelectorAll('.chip');
+  const precoRange = document.getElementById('precoRange');
+  const capRange = document.getElementById('capRange');
+  const precoValor = document.getElementById('precoValor');
+  const capValor = document.getElementById('capValor');
+  const buscaTexto = document.getElementById('buscaTexto');
+  const limparBtn = document.getElementById('limparFiltros');
+
+  let tiposAtivos = new Set();
+
+  function rotuloTipo(tipo){
+    return {
+      privativa:"Sala privativa",
+      compartilhada:"Compartilhada",
+      reuniao:"Sala de reunião",
+      estudio:"Estúdio"
+    }[tipo];
+  }
+
+  function renderCard(item){
+    return `
+      <div class="card">
+        <img class="card-foto" src="${esc(item.foto)}" alt="${esc(item.nome)}">
+        <div class="card-corpo">
+          <h3>${esc(item.nome)}</h3>
+          <div class="card-local">📍 ${esc(item.bairro)}</div>
+          <div class="card-tags">
+            <span>${rotuloTipo(item.tipo)}</span>
+            <span>${item.capacidade} pessoa(s)</span>
+          </div>
+          <div class="card-rodape">
+            <div class="card-preco">R$ ${item.preco}/dia</div>
+            <a class="card-btn" href="${esc(item.link)}">Ver mais</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function aplicarFiltros(){
+    const texto = buscaTexto.value.trim().toLowerCase();
+    const precoMax = Number(precoRange.value);
+    const capMin = Number(capRange.value);
+
+    const filtrados = escritorios.filter(item => {
+      const passaTexto = !texto ||
+        item.nome.toLowerCase().includes(texto) ||
+        item.bairro.toLowerCase().includes(texto);
+      const passaTipo = tiposAtivos.size === 0 || tiposAtivos.has(item.tipo);
+      const passaPreco = item.preco <= precoMax;
+      const passaCap = item.capacidade >= capMin;
+      return passaTexto && passaTipo && passaPreco && passaCap;
+    });
+
+    catalogoEl.innerHTML = filtrados.length
+      ? filtrados.map(renderCard).join('')
+      : '<div class="sem-resultado">Nenhum escritório encontrado com esses filtros.</div>';
+
+    contagemEl.textContent = `${filtrados.length} escritório(s) encontrado(s)`;
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tipo = chip.dataset.tipo;
+      if (tiposAtivos.has(tipo)) {
+        tiposAtivos.delete(tipo);
+        chip.classList.remove('active');
+      } else {
+        tiposAtivos.add(tipo);
+        chip.classList.add('active');
+      }
+      aplicarFiltros();
+    });
+  });
+
+  precoRange.addEventListener('input', () => {
+    precoValor.textContent = `R$ ${precoRange.value}`;
+    aplicarFiltros();
+  });
+
+  capRange.addEventListener('input', () => {
+    capValor.textContent = `${capRange.value} pessoa${capRange.value > 1 ? 's' : ''}`;
+    aplicarFiltros();
+  });
+
+  buscaTexto.addEventListener('input', aplicarFiltros);
+
+  limparBtn.addEventListener('click', () => {
+    tiposAtivos.clear();
+    chips.forEach(c => c.classList.remove('active'));
+    precoRange.value = 300;
+    capRange.value = 1;
+    precoValor.textContent = 'R$ 300';
+    capValor.textContent = '1 pessoa';
+    buscaTexto.value = '';
+    aplicarFiltros();
+  });
+
+  /* ── Salas cadastradas no formulário (vêm do servidor) ── */
+  async function carregarCadastrados(){
+    try{
+      const r = await fetch('/api/quartos');
+      if(!r.ok) throw new Error();
+      const lista = await r.json();
+      lista.forEach(q => escritorios.push({
+        nome: q.titulo,
+        bairro: q.bairro || q.cidade || '',
+        tipo: q.tipo,
+        preco: q.preco,
+        capacidade: q.capacidade,
+        foto: q.fotos[0],
+        link: `/Salas/sala.html?id=${q.id}`
+      }));
+    }catch(e){
+      console.warn('Servidor indisponível, mostrando só as salas fixas.');
+    }
+    aplicarFiltros();
+  }
+  carregarCadastrados();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Quarto</title>
+
+    <link rel="stylesheet" href="cadastroquarto.css">
+    <link rel="stylesheet" href="cadastroquarto-extra.css">
+
+    <!-- IMPORTAÇÃO DOS ÍCONES -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <form id="formQuarto">
+            <h1>Cadastrar Quarto</h1>
+
+            <!-- nome do quarto (aparece no card do catálogo) -->
+            <div class="caixa-texto">
+                <input placeholder="Nome do quarto:" type="text" id="titulo" required>
+                <i class="bx bxs-home"></i>
+            </div>
+
+            <!-- NOVO: tipo, preço e descrição -->
+            <div class="caixa-texto">
+                <select id="tipo" class="campo-select" required>
+                    <option value="">Tipo de espaço</option>
+                    <option value="privativa">Sala privativa</option>
+                    <option value="compartilhada">Estação compartilhada</option>
+                    <option value="reuniao">Sala de reunião</option>
+                    <option value="estudio">Estúdio criativo</option>
+                </select>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Preço por dia (R$):" type="number" id="preco" min="1" max="300" required>
+                <i class="bx bxs-dollar-circle"></i>
+            </div>
+
+            <div class="caixa-texto caixa-alta">
+                <textarea id="descricao" class="campo-textarea" placeholder="Descrição do espaço:" rows="3" required></textarea>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="DDD" type="text" id="ddd" maxlength="2">
+                <input placeholder="Número de telefone:" type="text" id="telefone" maxlength="10">
+                <i class="bx bxs-phone"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="CPF: 000.000.000-00" type="text" id="cpf" maxlength="14">
+                <i class="bx bxs-id-card"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="CEP: 00000-000" type="text" id="cep" maxlength="9">
+                <i class="bx bxs-map"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Endereço:" type="text" id="endereco" readonly>
+                <i class="bx bxs-home"></i>
+            </div>
+
+            <div class="caixa-data">
+                <input placeholder="Bairro:" type="text" id="bairro" readonly>
+                <input placeholder="Cidade:" type="text" id="cidade" readonly>
+                <input placeholder="UF" type="text" id="uf" maxlength="2" readonly>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Número:" type="text" id="numero">
+                <i class="bx bxs-building-house"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Complemento:" type="text" id="complemento">
+                <i class="bx bxs-home"></i>
+            </div>
+
+            <!-- tomadas, mesas e capacidade máxima -->
+            <div class="caixa-data">
+                <input placeholder="Tomadas" type="number" id="tomadas" min="0" max="999">
+                <input placeholder="Mesas" type="number" id="mesas" min="0" max="999">
+                <input placeholder="Capacidade máx." type="number" id="capacidade" min="1" max="9999">
+            </div>
+
+            <!-- ÁREA DE FOTOS (máx. 6) -->
+            <div class="area-fotos">
+                <label for="fotos" class="upload-fotos" id="areaUpload">
+                    <i class="bx bxs-image-add"></i>
+                    <span>Clique ou arraste as fotos do quarto</span>
+                    <small id="contadorFotos">0 de 6 fotos</small>
+                </label>
+                <input type="file" id="fotos" name="fotos" accept="image/*" multiple hidden>
+
+                <div class="lista-fotos" id="listaFotos"></div>
+            </div>
+
+            <button type="submit" class="login">Cadastrar</button>
+        </form>
+    </main>
+
+    <script src="cadastroquarto.js"></script>
+</body>
+</html>

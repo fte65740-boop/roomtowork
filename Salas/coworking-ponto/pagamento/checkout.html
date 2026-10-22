@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento — Room2WORK</title>
+<link rel="stylesheet" href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/cssbase/produto.css">
+<link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    <a href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html" class="logo-link">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    </a>
+  </h1>
+
+  <nav id="navLinks">
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/login/login.html" class="login-btn">Login</a>
+  </nav>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="checkout-titulo">
+  <h2>Pagamento</h2>
+  <p>Confira sua reserva e escolha como pagar.</p>
+</div>
+
+<main class="checkout">
+
+  <!-- ===== Coluna esquerda: forma de pagamento ===== -->
+  <section class="painel">
+    <h3>Forma de pagamento</h3>
+
+    <div class="metodos" role="radiogroup" aria-label="Forma de pagamento">
+      <div class="metodo">
+        <input type="radio" name="metodo" id="m-credito" value="credito" checked>
+        <label for="m-credito"><span class="icone">💳</span>Crédito</label>
+      </div>
+      <div class="metodo">
+        <input type="radio" name="metodo" id="m-debito" value="debito">
+        <label for="m-debito"><span class="icone">🏧</span>Débito</label>
+      </div>
+      <div class="metodo">
+        <input type="radio" name="metodo" id="m-pix" value="pix">
+        <label for="m-pix"><span class="icone">⚡</span>Pix</label>
+      </div>
+      <div class="metodo">
+        <input type="radio" name="metodo" id="m-boleto" value="boleto">
+        <label for="m-boleto"><span class="icone">🧾</span>Boleto</label>
+      </div>
+    </div>
+
+    <!-- Crédito / Débito -->
+    <div class="secao-pagamento ativa" id="sec-cartao">
+      <div class="campo">
+        <label for="cartaoNumero">Número do cartão</label>
+        <input type="text" id="cartaoNumero" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19">
+        <span class="erro">Informe os 16 dígitos do cartão.</span>
+      </div>
+      <div class="campo">
+        <label for="cartaoNome">Nome impresso no cartão</label>
+        <input type="text" id="cartaoNome" autocomplete="cc-name" placeholder="Como está no cartão">
+        <span class="erro">Informe o nome do titular.</span>
+      </div>
+      <div class="linha-2">
+        <div class="campo">
+          <label for="cartaoValidade">Validade</label>
+          <input type="text" id="cartaoValidade" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5">
+          <span class="erro">Use uma validade futura (MM/AA).</span>
+        </div>
+        <div class="campo">
+          <label for="cartaoCvv">CVV</label>
+          <input type="text" id="cartaoCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4">
+          <span class="erro">Informe o CVV.</span>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="cartaoCpf">CPF do titular</label>
+        <input type="text" id="cartaoCpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14">
+        <span class="erro">Informe um CPF com 11 dígitos.</span>
+      </div>
+      <div class="campo" id="campoParcelas">
+        <label for="parcelas">Parcelas</label>
+        <select id="parcelas"></select>
+      </div>
+    </div>
+
+    <!-- Pix -->
+    <div class="secao-pagamento" id="sec-pix">
+      <div class="caixa-info">
+        <svg class="pix-qr" id="pixQr" viewBox="0 0 25 25" shape-rendering="crispEdges" role="img" aria-label="QR Code de exemplo"></svg>
+        <p><strong>Como pagar:</strong> abra o app do seu banco, escolha Pix e leia o QR Code ou use o código abaixo.</p>
+        <div class="pix-codigo">
+          <input type="text" id="pixCodigo" readonly aria-label="Código Pix copia e cola">
+          <button type="button" class="btn-secundario" id="copiarPix">Copiar</button>
+        </div>
+        <p style="margin-top:10px">O pagamento é confirmado em poucos segundos.</p>
+      </div>
+    </div>
+
+    <!-- Boleto -->
+    <div class="secao-pagamento" id="sec-boleto">
+      <div class="caixa-info">
+        <p><strong>Boleto bancário</strong></p>
+        <p>Ao confirmar, vamos gerar o boleto com vencimento em 3 dias úteis.</p>
+        <p>Sua reserva fica garantida assim que o pagamento for compensado (até 2 dias úteis).</p>
+      </div>
+    </div>
+
+    <button type="button" class="btn-pagar" id="btnPagar">Pagar</button>
+    <p class="seguranca">🔒 Ambiente de demonstração — nenhum dado é enviado ou salvo.</p>
+    <a href="javascript:history.back()" class="voltar">&#10094; Voltar para a sala</a>
+  </section>
+
+  <!-- ===== Coluna direita: resumo ===== -->
+  <aside class="painel resumo">
+    <h3>Resumo da reserva</h3>
+    <img class="resumo-imagem" id="rImagem" src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg" alt="">
+    <h4 id="rNome">Ateliê Vento</h4>
+
+    <div class="aviso-datas" id="avisoDatas">
+      Nenhuma data foi escolhida. Volte para a sala e selecione o período da reserva.
+    </div>
+
+    <ul class="resumo-lista">
+      <li><span>Local</span><span id="rLocal">Indaiá</span></li>
+      <li><span>Capacidade máxima</span><span id="rCapacidade">5 pessoas</span></li>
+      <li><span>Tomadas</span><span id="rTomadas">5</span></li>
+      <li><span>Mesas</span><span id="rMesas">2</span></li>
+      <li><span>Período</span><span id="rPeriodo">—</span></li>
+    </ul>
+
+    <div class="resumo-linhas">
+      <div><span id="rCalculo">R$ 170,00 × 1 dia</span><span id="rSubtotal">R$ 170,00</span></div>
+    </div>
+    <div class="resumo-total">
+      <span>Total</span>
+      <strong id="rTotal">R$ 170,00</strong>
+    </div>
+  </aside>
+
+</main>
+
+<!-- Confirmação -->
+<div class="confirmacao" id="confirmacao" role="dialog" aria-modal="true" aria-labelledby="confTitulo">
+  <div class="confirmacao-caixa">
+    <div class="check">✓</div>
+    <h3 id="confTitulo">Reserva confirmada!</h3>
+    <p id="confTexto"></p>
+    <p id="confCodigo" style="color:#555"></p>
+    <button type="button" class="btn-pagar" id="btnConcluir">Voltar ao início</button>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Room2WORK</p>
+</footer>
+
+<script>
+/* ── Dados da sala (vêm da URL; se faltar algo, usa o Ateliê Vento) ── */
+const params = new URLSearchParams(location.search);
+
+const sala = {
+  nome:       params.get('nome')       || 'Ateliê Vento',
+  local:      params.get('local')      || 'Indaiá',
+  capacidade: params.get('capacidade') || '5',
+  tomadas:    params.get('tomadas')    || '5',
+  mesas:      params.get('mesas')      || '2',
+  preco:      parseFloat(params.get('preco')) || 170,
+  imagem:     params.get('imagem')     || 'C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg',
+  inicio:     params.get('inicio'),   // formato AAAA-MM-DD
+  fim:        params.get('fim')
+};
+
+const brl = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const $ = id => document.getElementById(id);
+
+function lerData(iso){
+  if(!iso) return null;
+  const [a, m, d] = iso.split('-').map(Number);
+  if(!a || !m || !d) return null;
+  return new Date(a, m - 1, d);
+}
+
+const dInicio = lerData(sala.inicio);
+const dFim    = lerData(sala.fim || sala.inicio);
+const temDatas = !!(dInicio && dFim && dFim >= dInicio);
+const dias = temDatas ? Math.round((dFim - dInicio) / 86400000) + 1 : 1;
+const total = sala.preco * dias;
+
+/* ── Preenche o resumo ── */
+$('rNome').textContent = sala.nome;
+$('rImagem').src = sala.imagem;
+$('rImagem').alt = sala.nome;
+$('rLocal').textContent = sala.local;
+$('rCapacidade').textContent = `${sala.capacidade} pessoas`;
+$('rTomadas').textContent = sala.tomadas;
+$('rMesas').textContent = sala.mesas;
+$('rCalculo').textContent = `${brl(sala.preco)} × ${dias} dia${dias > 1 ? 's' : ''}`;
+$('rSubtotal').textContent = brl(total);
+$('rTotal').textContent = brl(total);
+
+if(temDatas){
+  const f = d => d.toLocaleDateString('pt-BR');
+  $('rPeriodo').textContent = dias === 1 ? f(dInicio) : `${f(dInicio)} a ${f(dFim)}`;
+}else{
+  $('avisoDatas').style.display = 'block';
+  $('btnPagar').disabled = true;
+}
+
+/* ── Troca de forma de pagamento ── */
+const secoes = { credito: 'sec-cartao', debito: 'sec-cartao', pix: 'sec-pix', boleto: 'sec-boleto' };
+
+function metodoAtual(){
+  return document.querySelector('input[name="metodo"]:checked').value;
+}
+
+function atualizarMetodo(){
+  const m = metodoAtual();
+  document.querySelectorAll('.secao-pagamento').forEach(s => s.classList.remove('ativa'));
+  $(secoes[m]).classList.add('ativa');
+
+  // parcelas só no crédito
+  $('campoParcelas').style.display = (m === 'credito') ? 'grid' : 'none';
+
+  const rotulos = { credito: 'Pagar', debito: 'Pagar', pix: 'Já paguei com Pix', boleto: 'Gerar boleto' };
+  $('btnPagar').textContent = `${rotulos[m]} ${m === 'pix' || m === 'boleto' ? '' : brl(total)}`.trim();
+  if(m === 'pix') gerarPix();
+}
+
+document.querySelectorAll('input[name="metodo"]').forEach(r => r.addEventListener('change', atualizarMetodo));
+
+/* ── Parcelas (até 6x sem juros, mínimo de R$ 50 por parcela) ── */
+(function montarParcelas(){
+  const sel = $('parcelas');
+  for(let n = 1; n <= 6; n++){
+    if(n > 1 && total / n < 50) break;
+    const o = document.createElement('option');
+    o.value = n;
+    o.textContent = n === 1 ? `1x de ${brl(total)} à vista` : `${n}x de ${brl(total / n)} sem juros`;
+    sel.appendChild(o);
+  }
+})();
+
+/* ── Máscaras dos campos do cartão ── */
+$('cartaoNumero').addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 16).replace(/(\d{4})(?=\d)/g, '$1 ');
+});
+$('cartaoValidade').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g, '').slice(0, 4);
+  if(v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+  e.target.value = v;
+});
+$('cartaoCvv').addEventListener('input', e => {
+  e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+});
+$('cartaoCpf').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+  v = v.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  e.target.value = v;
+});
+
+/* ── Pix (QR de exemplo + código copia e cola) ── */
+let pixGerado = false;
+function gerarPix(){
+  if(pixGerado) return;
+  pixGerado = true;
+
+  // QR decorativo (pseudo-aleatório) apenas para a demonstração
+  const n = 25, svg = $('pixQr');
+  let seed = Math.round(total * 100) + 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  let html = '';
+  const noCanto = (x, y) => (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
+  for(let y = 0; y < n; y++){
+    for(let x = 0; x < n; x++){
+      if(!noCanto(x, y) && rnd() > 0.5) html += `<rect x="${x}" y="${y}" width="1" height="1" fill="#010101"/>`;
+    }
+  }
+  [[0,0],[n-7,0],[0,n-7]].forEach(([x, y]) => {
+    html += `<rect x="${x}" y="${y}" width="7" height="7" fill="#010101"/>
+             <rect x="${x+1}" y="${y+1}" width="5" height="5" fill="#fff"/>
+             <rect x="${x+2}" y="${y+2}" width="3" height="3" fill="#010101"/>`;
+  });
+  svg.innerHTML = html;
+
+  const valor = total.toFixed(2);
+  $('pixCodigo').value =
+    `00020126580014br.gov.bcb.pix0136room2work-demo-${Date.now().toString(36)}5204000053039865406${valor}5909Room2WORK6009SAO PAULO6304DEMO`;
+}
+
+$('copiarPix').addEventListener('click', async () => {
+  const campo = $('pixCodigo');
+  try{
+    await navigator.clipboard.writeText(campo.value);
+  }catch(e){
+    campo.select();
+    document.execCommand('copy');
+  }
+  $('copiarPix').textContent = 'Copiado!';
+  setTimeout(() => $('copiarPix').textContent = 'Copiar', 1800);
+});
+
+/* ── Validação do cartão ── */
+function validarCartao(){
+  const regras = {
+    cartaoNumero:   v => v.replace(/\D/g, '').length === 16,
+    cartaoNome:     v => v.trim().split(/\s+/).length >= 2 || v.trim().length >= 3,
+    cartaoValidade: v => {
+      const m = v.match(/^(\d{2})\/(\d{2})$/);
+      if(!m) return false;
+      const mes = +m[1], ano = 2000 + +m[2];
+      if(mes < 1 || mes > 12) return false;
+      const fimDoMes = new Date(ano, mes, 0, 23, 59, 59);
+      return fimDoMes >= new Date();
+    },
+    cartaoCvv:      v => v.length >= 3,
+    cartaoCpf:      v => v.replace(/\D/g, '').length === 11
+  };
+  let ok = true;
+  Object.entries(regras).forEach(([id, teste]) => {
+    const campo = $(id);
+    const valido = teste(campo.value);
+    campo.classList.toggle('invalido', !valido);
+    if(!valido) ok = false;
+  });
+  if(!ok){
+    const primeiro = document.querySelector('#sec-cartao .invalido');
+    if(primeiro) primeiro.focus();
+  }
+  return ok;
+}
+
+document.querySelectorAll('#sec-cartao input').forEach(i =>
+  i.addEventListener('input', () => i.classList.remove('invalido'))
+);
+
+/* ── Finalizar ── */
+$('btnPagar').addEventListener('click', () => {
+  const m = metodoAtual();
+  if((m === 'credito' || m === 'debito') && !validarCartao()) return;
+
+  const codigo = 'R2W-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+  const periodo = $('rPeriodo').textContent;
+  let texto;
+
+  if(m === 'credito'){
+    const p = +$('parcelas').value;
+    texto = `Pagamento de ${brl(total)} no crédito (${p}x) aprovado para ${sala.nome}, ${periodo}.`;
+  }else if(m === 'debito'){
+    texto = `Pagamento de ${brl(total)} no débito aprovado para ${sala.nome}, ${periodo}.`;
+  }else if(m === 'pix'){
+    texto = `Recebemos seu Pix de ${brl(total)}. ${sala.nome} reservada em ${periodo}.`;
+  }else{
+    texto = `Boleto de ${brl(total)} gerado. A reserva de ${sala.nome} (${periodo}) é confirmada após a compensação.`;
+  }
+
+  $('confTexto').textContent = texto;
+  $('confCodigo').textContent = `Código da reserva: ${codigo}`;
+  $('confirmacao').classList.add('aberta');
+  $('btnConcluir').focus();
+});
+
+$('btnConcluir').addEventListener('click', () => {
+  window.location.href = 'file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html';
+});
+
+atualizarMetodo();
+
+/* ── Menu hamburguer (mobile) ── */
+const toggle = $('menuToggle');
+const navLinks = $('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('active');
+  if(navLinks) navLinks.classList.toggle('open');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room2WORK — Estúdio Nômade</title>
+<link rel="stylesheet" href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/cssbase/produto.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    <a href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html" class="logo-link">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    </a>
+  </h1>
+
+  <nav id="navLinks">
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/login/login.html" class="login-btn">Login</a>
+  </nav>
+
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="produto-card">
+
+  <div class="produto-galeria">
+    <div class="produto-imagem-container">
+      <img id="imagemPrincipal" src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4.jpg" alt="Estúdio Nômade" class="produto-imagem">
+    </div>
+
+    <div class="produto-thumbs">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4.jpg" alt="Foto 1" class="ativa" onclick="trocarImagem(this)">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4-2.jpg" alt="Foto 2" onclick="trocarImagem(this)">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4-3.jpg" alt="Foto 3" onclick="trocarImagem(this)">
+      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4-4.jpg" alt="Foto 4" onclick="trocarImagem(this)">
+    </div>
+  </div>
+
+  <div class="produto-info">
+    <h2>Estúdio Nômade</h2>
+    <p class="produto-descricao">
+      Estúdio versátil pensado para equipes criativas, com iluminação natural, espaço para brainstorm e mobiliário flexível.
+    </p>
+    <p class="produto-descricao">Local: Vila Xavier</p>
+    <p class="produto-descricao">Capacidade Máxima: 6</p>
+    <p class="produto-descricao">Quantidade de Tomadas: 6</p>
+    <p class="produto-descricao">Quantidade de Mesas: 3</p>
+    <div class="seletor-data">
+  <label class="seletor-data-label">Período da reserva</label>
+  <div class="seletor-data-input" id="seletorDataInput">
+    <span id="textoData">Selecione as datas</span>
+    <span class="icone-calendario">📅</span>
+  </div>
+
+  <div class="calendario-popup" id="calendarioPopup">
+    <div class="calendario-header">
+      <button type="button" id="mesAnterior">&#10094;</button>
+      <span id="mesAtualLabel"></span>
+      <button type="button" id="proximoMes">&#10095;</button>
+    </div>
+    <div class="calendario-dias-semana">
+      <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+    </div>
+    <div class="calendario-grid" id="calendarioGrid"></div>
+    <div class="calendario-footer">
+      <small id="calendarioInfo">Selecione a data de início</small>
+      <button type="button" id="limparDatas">Limpar</button>
+    </div>
+  </div>
+</div>
+    <p class="produto-preco">R$ 150,00 <span>/dia</span></p>
+    <button class="btn-comprar" onclick="finalizarCompra()">Finalizar Compra</button>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Room2WORK</p>
+</footer>
+
+<script>
+
+function finalizarCompra(){
+  if(!dataInicio || !dataFim){
+    alert('Selecione o período da reserva antes de continuar.');
+    return;
+  }
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+
+  const q = new URLSearchParams({
+    nome: 'Estúdio Nômade',
+    local: 'Vila Xavier',
+    capacidade: 6,
+    tomadas: 6,
+    mesas: 3,
+    preco: 170,
+    imagem: imagemPrincipal.src,
+    inicio: iso(dataInicio),
+    fim: iso(dataFim)
+  });
+
+  window.location.href = 'file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/atelie-vento/pagamento/checkout.html?' + q.toString();
+}
+
+  /* ── Trocar imagem da galeria ── */
+function trocarImagem(thumb){
+  imagemPrincipal.src = thumb.src;
+  atualizarBackground();
+
+  document.querySelectorAll('.produto-thumbs img').forEach(img => img.classList.remove('ativa'));
+  thumb.classList.add('ativa');
+}
+
+  /* ── Zoom que segue o mouse ── */
+const galeriaContainer = document.querySelector('.produto-imagem-container');
+const imagemPrincipal = document.getElementById('imagemPrincipal');
+
+function atualizarBackground(){
+  galeriaContainer.style.backgroundImage = `url('${imagemPrincipal.src}')`;
+}
+
+atualizarBackground(); // define a imagem de fundo inicial
+
+galeriaContainer.addEventListener('mousemove', (e) => {
+  const rect = galeriaContainer.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+  galeriaContainer.style.backgroundPosition = `${x}% ${y}%`;
+  galeriaContainer.classList.add('zoom-ativo');
+});
+
+galeriaContainer.addEventListener('mouseleave', () => {
+  galeriaContainer.classList.remove('zoom-ativo');
+  galeriaContainer.style.backgroundPosition = 'center';
+});
+
+/* ── Seletor de datas (máx. 4 semanas / 28 dias) ── */
+const LIMITE_DIAS = 28;
+
+const seletorInput   = document.getElementById('seletorDataInput');
+const calendarioPopup = document.getElementById('calendarioPopup');
+const mesAtualLabel  = document.getElementById('mesAtualLabel');
+const calendarioGrid = document.getElementById('calendarioGrid');
+const textoData      = document.getElementById('textoData');
+const calendarioInfo = document.getElementById('calendarioInfo');
+
+let dataExibida = new Date(); // mês exibido no calendário
+let dataInicio = null;
+let dataFim = null;
+
+const nomesMeses = [
+  "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
+
+function formatarData(data){
+  return data.toLocaleDateString('pt-BR');
+}
+
+function renderizarCalendario(){
+  calendarioGrid.innerHTML = '';
+  const ano = dataExibida.getFullYear();
+  const mes = dataExibida.getMonth();
+
+  mesAtualLabel.textContent = `${nomesMeses[mes]} ${ano}`;
+
+  const primeiroDiaSemana = new Date(ano, mes, 1).getDay();
+  const totalDiasMes = new Date(ano, mes + 1, 0).getDate();
+
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+
+  // espaços vazios antes do dia 1
+  for(let i = 0; i < primeiroDiaSemana; i++){
+    const vazio = document.createElement('button');
+    vazio.className = 'vazio';
+    vazio.disabled = true;
+    calendarioGrid.appendChild(vazio);
+  }
+
+  for(let dia = 1; dia <= totalDiasMes; dia++){
+    const dataAtual = new Date(ano, mes, dia);
+    dataAtual.setHours(0,0,0,0);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = dia;
+
+    // desabilita datas passadas
+    if(dataAtual < hoje){
+      btn.disabled = true;
+    }
+
+    // marca visualmente início, fim e intervalo
+    if(dataInicio && dataAtual.getTime() === dataInicio.getTime()){
+      btn.classList.add(dataFim ? 'dia-inicio' : 'dia-unico');
+    }
+    if(dataFim && dataAtual.getTime() === dataFim.getTime()){
+      btn.classList.add('dia-fim');
+    }
+    if(dataInicio && dataFim && dataAtual > dataInicio && dataAtual < dataFim){
+      btn.classList.add('no-intervalo');
+    }
+
+    btn.addEventListener('click', () => selecionarDia(dataAtual));
+    calendarioGrid.appendChild(btn);
+  }
+}
+
+function selecionarDia(data){
+  // primeiro clique OU reinício da seleção (clicou antes do início já marcado)
+  if(!dataInicio || (dataInicio && dataFim) || data < dataInicio){
+    dataInicio = data;
+    dataFim = null;
+    calendarioInfo.textContent = 'Selecione a data de término';
+  }
+  // segundo clique = data de fim
+  else{
+    const diffDias = Math.round((data - dataInicio) / (1000 * 60 * 60 * 24)) + 1;
+
+    if(diffDias > LIMITE_DIAS){
+      calendarioInfo.textContent = `Máximo de ${LIMITE_DIAS} dias (4 semanas) por reserva.`;
+      return;
+    }
+
+    dataFim = data;
+    calendarioInfo.textContent = `${diffDias} dia(s) selecionado(s)`;
+    textoData.textContent = `${formatarData(dataInicio)} — ${formatarData(dataFim)}`;
+  }
+
+  renderizarCalendario();
+}
+
+/* ── abrir/fechar popup ── */
+seletorInput.addEventListener('click', (e) => {
+  calendarioPopup.classList.toggle('aberto');
+  e.stopPropagation();
+});
+
+document.addEventListener('click', (e) => {
+  if(!calendarioPopup.contains(e.target) && !seletorInput.contains(e.target)){
+    calendarioPopup.classList.remove('aberto');
+  }
+});
+
+/* ── navegação de mês ── */
+document.getElementById('mesAnterior').addEventListener('click', () => {
+  dataExibida.setMonth(dataExibida.getMonth() - 1);
+  renderizarCalendario();
+});
+document.getElementById('proximoMes').addEventListener('click', () => {
+  dataExibida.setMonth(dataExibida.getMonth() + 1);
+  renderizarCalendario();
+});
+
+/* ── limpar seleção ── */
+document.getElementById('limparDatas').addEventListener('click', () => {
+  dataInicio = null;
+  dataFim = null;
+  textoData.textContent = 'Selecione as datas';
+  calendarioInfo.textContent = 'Selecione a data de início';
+  renderizarCalendario();
+});
+
+renderizarCalendario();
+
+  /* ── Menu hamburguer (mobile) ── */
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    if (navLinks) navLinks.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

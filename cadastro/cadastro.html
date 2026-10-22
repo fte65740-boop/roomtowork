@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+
+    <link rel="stylesheet" href="cadastro.css">
+
+    <!-- IMPORTAÇÃO DOS ÍCONES -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+    <main class="container">
+        <form>
+            <h1>Cadastre-se</h1>
+            <div class="caixa-texto">
+                <input
+                    placeholder="Nome Completo:" 
+                    type="text" 
+                    id="nome"
+                    required>
+                <i class="bx bxs-user"></i>
+            </div>
+
+            <div class="caixa-data">
+                <select name="dia" id="dia">
+                    <option value="">Dia</option>
+                    <!-- gerado pelo JS -->
+                </select>
+
+                <select name="mes" id="mes">
+                    <option value="">Mês</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+
+                <select name="ano" id="ano">
+                    <option value="">Ano</option>
+                    <!-- gerado pelo JS -->
+                </select>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Email:" type="email">
+                <i class="bx bxs-envelope"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="Senha:" type="password">
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="DDD" type="text" id="ddd" maxlength="2">
+                <input placeholder="Número de telefone:" type="text" id="telefone" maxlegnth="9">
+                <i class="bx bxs-phone"></i>
+            </div>
+
+            <div class="caixa-texto">
+                <input placeholder="CPF: 000.000.000-00" type="text" id="cpf" maxlength="14">
+                <i class="bx bxs-id-card"></i>
+            </div>
+
+            <div class="caixa-texto">
+    <input placeholder="CEP: 00000-000" type="text" id="cep" maxlength="9">
+    <i class="bx bxs-map"></i>
+</div>
+
+<div class="caixa-texto">
+    <input placeholder="Endereço:" type="text" id="endereco" readonly>
+    <i class="bx bxs-home"></i>
+</div>
+
+<div class="caixa-data">
+    <input placeholder="Bairro:" type="text" id="bairro" readonly>
+    <input placeholder="Cidade:" type="text" id="cidade" readonly>
+    <input placeholder="UF" type="text" id="uf" maxlength="2" readonly>
+</div>
+
+<div class="caixa-texto">
+    <input placeholder="Número:" type="text" id="numero">
+    <i class="bx bxs-building-house"></i>
+</div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+            <button type="submit" class="login">Cadastrar</button>
+
+        </form>
+    </main>
+
+    <script src="cadastro.js"></script>
+</body>
+</html>
