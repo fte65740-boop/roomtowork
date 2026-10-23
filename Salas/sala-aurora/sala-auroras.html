@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Room2WORK — Sala Aurora</title>
-<link rel="stylesheet" href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/cssbase/produto.css">
+<link rel="stylesheet" href="../cssbase/produto.css">
 </head>
 <body>
 
 <header>
   <h1>
-    <a href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html" class="logo-link">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    <a href="../../quartos/quartos.html" class="logo-link">
+      <img src="../../imagens/room2wrk-logo.png" alt="Room2WORK Logo">
     </a>
   </h1>
 
   <nav id="navLinks">
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/login/login.html" class="login-btn">Login</a>
+    <a href="../../quartos/quartos.html">Início</a>
+    <a href="../../cadastro-quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="../../login/login.html" class="login-btn">Login</a>
   </nav>
 
   <button class="menu-toggle" id="menuToggle">
@@ -32,14 +32,14 @@
 
   <div class="produto-galeria">
     <div class="produto-imagem-container">
-      <img id="imagemPrincipal" src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1.jpg" alt="Sala Aurora" class="produto-imagem">
+      <img id="imagemPrincipal" src="../../imagens/escritorio1.jpg" alt="Sala Aurora" class="produto-imagem">
     </div>
 
     <div class="produto-thumbs">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1.jpg" alt="Foto 1" class="ativa" onclick="trocarImagem(this)">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1-2.jpg" alt="Foto 2" onclick="trocarImagem(this)">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1-3.jpg" alt="Foto 3" onclick="trocarImagem(this)">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1-4.jpg" alt="Foto 4" onclick="trocarImagem(this)">
+      <img src="../../imagens/escritorio1.jpg" alt="Foto 1" class="ativa" onclick="trocarImagem(this)">
+      <img src="../../imagens/escritorio1-2.jpg" alt="Foto 2" onclick="trocarImagem(this)">
+      <img src="../../imagens/escritorio1-3.jpg" alt="Foto 3" onclick="trocarImagem(this)">
+      <img src="../../imagens/escritorio1-4.jpg" alt="Foto 4" onclick="trocarImagem(this)">
     </div>
   </div>
 
@@ -107,7 +107,16 @@ function finalizarCompra(){
     fim: iso(dataFim)
   });
 
-  window.location.href = 'file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/atelie-vento/pagamento/checkout.html?' + q.toString();
+  window.location.href='../hub-colmeia/pagamento-hub-colmeia/checkout-hub-colmeia.html?' + q.toString();
+}
+
+  /* ── Trocar imagem da galeria ── */
+function trocarImagem(thumb){
+  imagemPrincipal.src = thumb.src;
+  atualizarBackground();
+
+  document.querySelectorAll('.produto-thumbs img').forEach(img => img.classList.remove('ativa'));
+  thumb.classList.add('ativa');
 }
 
   /* ── Zoom que segue o mouse ── */
@@ -191,18 +200,23 @@ function renderizarCalendario(){
       btn.disabled = true;
     }
 
+
     // marca visualmente início, fim e intervalo
-    if(dataInicio && dataAtual.getTime() === dataInicio.getTime()){
-      btn.classList.add(dataFim ? 'dia-inicio' : 'dia-unico');
-    }
-    if(dataFim && dataAtual.getTime() === dataFim.getTime()){
-      btn.classList.add('dia-fim');
-    }
+    const ehInicio = dataInicio && dataAtual.getTime() === dataInicio.getTime();
+    const ehFim    = dataFim    && dataAtual.getTime() === dataFim.getTime();
+
+    if(ehInicio && ehFim)  btn.classList.add('dia-inicio', 'dia-fim', 'dia-unico');
+    else if(ehInicio)      btn.classList.add(dataFim ? 'dia-inicio' : 'dia-unico');
+    else if(ehFim)         btn.classList.add('dia-fim');
+
     if(dataInicio && dataFim && dataAtual > dataInicio && dataAtual < dataFim){
       btn.classList.add('no-intervalo');
     }
 
-    btn.addEventListener('click', () => selecionarDia(dataAtual));
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // evita fechar pop-up
+      selecionarDia(dataAtual);
+    });
     calendarioGrid.appendChild(btn);
   }
 }
@@ -213,6 +227,7 @@ function selecionarDia(data){
     dataInicio = data;
     dataFim = null;
     calendarioInfo.textContent = 'Selecione a data de término';
+    textoData.textContent = `${formatarData(dataInicio)} — ...`;
   }
   // segundo clique = data de fim
   else{

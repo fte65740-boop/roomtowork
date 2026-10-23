@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Room2WORK — Catálogo de Escritórios</title>
-<link rel="stylesheet" href="quartos.css">
+<link rel="stylesheet" href="../quartos/quartos.css">
 </head>
 <body>
 
 <header>
   <h1>
-    <a href="quartos.html" class="logo-link">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    <a href="../quartos/quartos.html" class="logo-link">
+      <img src="../imagens/room2wrk-logo.png" alt="Room2WORK Logo">
     </a>
   </h1>
 
@@ -21,9 +21,9 @@
   </div>
 
   <nav id="navLinks">
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
-    <a href="/login/login.html" class="login-btn">Login</a>
+    <a href="../quartos/quartos.html">Início</a>
+    <a href="../cadastro-quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="../login/login.html" class="login-btn">Login</a>
   </nav>
 
   <button class="menu-toggle" id="menuToggle">
@@ -95,14 +95,14 @@
      As salas cadastradas pelo formulário são somadas a esta lista
      automaticamente (veja carregarCadastrados() no final). */
   const escritorios = [
-    { nome:"Sala Aurora",      bairro:"Centro",        tipo:"privativa",     preco:70,  capacidade:4,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio1.jpg", link:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/sala-aurora/sala-auroras.html" },
-    { nome:"Hub Colmeia",      bairro:"Rocho",         tipo:"compartilhada", preco:60,  capacidade:1,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio2.jpg", link:"/Salas/hub%20colmeia/hub-colmeias.html" },
-    { nome:"Sala Bússola",     bairro:"Vila Yamada",   tipo:"reuniao",       preco:220, capacidade:10, foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio3.jpg", link:"/Salas/sala-bussola/sala-bussola.html" },
-    { nome:"Estúdio Nômade",   bairro:"Vila Xavier",   tipo:"estudio",       preco:150, capacidade:6,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio4.jpg", link:"/Salas/estudio-nomade/estudio-nomade.html" },
-    { nome:"Sala Farol",       bairro:"Imperador",     tipo:"privativa",     preco:130, capacidade:2,  foto:"C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio5.jpg", link:"/Salas/sala-farol/sala-farol.html" },
-    { nome:"Coworking Ponto",  bairro:"Centro",        tipo:"compartilhada", preco:45,  capacidade:1,  foto:"/imagens/escritorio6.jpg", link:"/Salas/coworking-ponto/coworking-ponto.html" },
-    { nome:"Sala Órbita",      bairro:"Maria Luiza",   tipo:"reuniao",       preco:190, capacidade:8,  foto:"/imagens/escritorio7.jpg", link:"/Salas/sala-orbita/sala-orbita.html" },
-    { nome:"Ateliê Vento",     bairro:"Indaiá",        tipo:"estudio",       preco:170, capacidade:5,  foto:"/imagens/escritorio8.jpg", link:"/Salas/atelie-vento/atelie-vento.html" },
+    { nome:"Sala Aurora",      bairro:"Centro",        tipo:"privativa",     preco:70,  capacidade:4,  foto:"../imagens/escritorio1.jpg", link:"../Salas/sala-aurora/sala-auroras.html" },
+    { nome:"Hub Colmeia",      bairro:"Rocho",         tipo:"compartilhada", preco:60,  capacidade:1,  foto:"../imagens/escritorio2.jpg", link:"../Salas/hub-colmeia/hub-colmeias.html" },
+    { nome:"Sala Bússola",     bairro:"Vila Yamada",   tipo:"reuniao",       preco:220, capacidade:10, foto:"../imagens/escritorio3.jpg", link:"../Salas/sala-bussola/sala-bussola.html" },
+    { nome:"Estúdio Nômade",   bairro:"Vila Xavier",   tipo:"estudio",       preco:150, capacidade:6,  foto:"../imagens/escritorio4.jpg", link:"../Salas/estudio-nomade/estudio-nomade.html" },
+    { nome:"Sala Farol",       bairro:"Imperador",     tipo:"privativa",     preco:130, capacidade:2,  foto:"../imagens/escritorio5.jpg", link:"../Salas/sala-farol/sala-farol.html" },
+    { nome:"Coworking Ponto",  bairro:"Centro",        tipo:"compartilhada", preco:45,  capacidade:1,  foto:"../imagens/escritorio6.jpg", link:"../Salas/coworking-ponto/coworking-ponto.html" },
+    { nome:"Sala Órbita",      bairro:"Maria Luiza",   tipo:"reuniao",       preco:190, capacidade:8,  foto:"../imagens/escritorio7.jpg", link:"../Salas/sala-orbita/sala-orbita.html" },
+    { nome:"Ateliê Vento",     bairro:"Indaiá",        tipo:"estudio",       preco:170, capacidade:5,  foto:"../salas/atelie-vento/imagens-atelie-vento/escritorio8.jpg", link:"../Salas/atelie-vento/atelie-vento.html" },
   ];
 
   const catalogoEl = document.getElementById('catalogo');
