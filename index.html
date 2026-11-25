@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de escritórios — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/catalogo.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/" class="logo-link"><img src="/assets/roomtowork-logo.png" alt="RoomToWORK"></a></h1>
+    <div class="search-box">
+      <input id="buscaTexto" type="search" placeholder="Buscar por nome ou bairro…" aria-label="Buscar por nome ou bairro">
+      <button type="button" aria-label="Buscar">🔍</button>
+    </div>
+    <nav id="navLinks" aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/anunciar/">Anunciar espaço</a>
+      <a href="/login/" class="login-btn">Entrar</a>
+    </nav>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <h2>Catálogo de escritórios</h2>
+      <p>Encontre um espaço de trabalho por tipo, preço ou capacidade.</p>
+    </div>
+    <section class="filtros" aria-label="Filtros">
+      <div class="filtros-linha">
+        <div class="filtro-grupo">
+          <span id="rotuloTipo">Tipo de espaço</span>
+          <div class="chips" role="group" aria-labelledby="rotuloTipo">
+            <button class="chip" type="button" data-tipo="privativa" aria-pressed="false">Sala privativa</button>
+            <button class="chip" type="button" data-tipo="compartilhada" aria-pressed="false">Estação compartilhada</button>
+            <button class="chip" type="button" data-tipo="reuniao" aria-pressed="false">Sala de reunião</button>
+            <button class="chip" type="button" data-tipo="estudio" aria-pressed="false">Estúdio criativo</button>
+          </div>
+        </div>
+        <div class="filtro-grupo">
+          <label for="precoRange">Preço máximo por dia</label>
+          <div class="range-field">
+            <input type="range" id="precoRange" min="1" max="300" step="1" value="300">
+            <span id="precoValor">R$ 300,00</span>
+          </div>
+        </div>
+        <div class="filtro-grupo">
+          <label for="capRange">Capacidade mínima</label>
+          <div class="range-field">
+            <input type="range" id="capRange" min="1" max="20" step="1" value="1">
+            <span id="capValor">1 pessoa</span>
+          </div>
+        </div>
+        <button type="button" class="limpar-filtros" id="limparFiltros">Limpar filtros</button>
+      </div>
+    </section>
+    <p class="resultado-contagem" id="contagem" role="status">Carregando espaços…</p>
+    <div class="catalogo" id="catalogo"></div>
+  </main>
+
+  <footer><p>&copy; 2026 RoomToWORK</p></footer>
+  <script type="module" src="/src/pages/catalogo.js"></script>
+</body>
+</html>

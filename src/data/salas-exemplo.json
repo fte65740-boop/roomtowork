@@ -1,0 +1,122 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "slug": "sala-aurora",
+    "titulo": "Sala Aurora",
+    "tipo": "privativa",
+    "descricao": "Espaço de trabalho compartilhado com mesa individual, cadeira ergonômica, Wi-Fi de alta velocidade e ar-condicionado. Ideal para quem busca produtividade e conforto.",
+    "bairro": "Centro",
+    "capacidade": 4,
+    "tomadas": 4,
+    "mesas": 1,
+    "preco_centavos": 7000,
+    "fotos": [
+      "escritorio1.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000002",
+    "slug": "hub-colmeia",
+    "titulo": "Hub Colmeia",
+    "tipo": "compartilhada",
+    "descricao": "Estação de trabalho compartilhada em ambiente colaborativo, com internet de alta velocidade e climatização. Perfeita para freelancers e profissionais que buscam networking.",
+    "bairro": "Rocho",
+    "capacidade": 5,
+    "tomadas": 2,
+    "mesas": 1,
+    "preco_centavos": 6000,
+    "fotos": [
+      "escritorio2.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000003",
+    "slug": "sala-bussola",
+    "titulo": "Sala Bússola",
+    "tipo": "reuniao",
+    "descricao": "Sala de reunião ampla e equipada, ideal para apresentações, treinamentos e encontros corporativos. Conta com projetor, quadro branco e Wi-Fi dedicado.",
+    "bairro": "Vila Yamada",
+    "capacidade": 10,
+    "tomadas": 8,
+    "mesas": 1,
+    "preco_centavos": 22000,
+    "fotos": [
+      "escritorio3.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000004",
+    "slug": "estudio-nomade",
+    "titulo": "Estúdio Nômade",
+    "tipo": "estudio",
+    "descricao": "Estúdio versátil pensado para equipes criativas, com iluminação natural, espaço para brainstorm e mobiliário flexível.",
+    "bairro": "Vila Xavier",
+    "capacidade": 6,
+    "tomadas": 6,
+    "mesas": 3,
+    "preco_centavos": 15000,
+    "fotos": [
+      "escritorio4.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000005",
+    "slug": "sala-farol",
+    "titulo": "Sala Farol",
+    "tipo": "privativa",
+    "descricao": "Sala privativa e silenciosa, perfeita para reuniões confidenciais ou trabalho em dupla, com decoração aconchegante e boa iluminação.",
+    "bairro": "Imperador",
+    "capacidade": 2,
+    "tomadas": 4,
+    "mesas": 2,
+    "preco_centavos": 13000,
+    "fotos": [
+      "escritorio5.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000006",
+    "slug": "coworking-ponto",
+    "titulo": "Coworking Ponto",
+    "tipo": "compartilhada",
+    "descricao": "Estação compartilhada no coração do Centro, com fácil acesso a transporte público e cafeteria no local.",
+    "bairro": "Centro",
+    "capacidade": 7,
+    "tomadas": 2,
+    "mesas": 1,
+    "preco_centavos": 4500,
+    "fotos": [
+      "escritorio6.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000007",
+    "slug": "sala-orbita",
+    "titulo": "Sala Órbita",
+    "tipo": "reuniao",
+    "descricao": "Sala de reunião moderna com equipamento de videoconferência, ideal para reuniões híbridas e apresentações para clientes.",
+    "bairro": "Maria Luiza",
+    "capacidade": 8,
+    "tomadas": 6,
+    "mesas": 1,
+    "preco_centavos": 19000,
+    "fotos": [
+      "escritorio7.jpg"
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000008",
+    "slug": "atelie-vento",
+    "titulo": "Ateliê Vento",
+    "tipo": "estudio",
+    "descricao": "Ateliê espaçoso e bem ventilado, com ambiente inspirador para trabalhos manuais, design e produção de conteúdo.",
+    "bairro": "Indaiá",
+    "capacidade": 5,
+    "tomadas": 5,
+    "mesas": 2,
+    "preco_centavos": 17000,
+    "fotos": [
+      "escritorio8.jpg"
+    ]
+  }
+]

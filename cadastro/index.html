@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastre-se — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/formularios.css">
+</head>
+<body>
+  <main class="container">
+    <a class="link-voltar" href="/login/">Voltar ao login</a>
+    <h1>Cadastre-se</h1>
+    <form id="cadastro">
+      <div class="caixa-texto">
+        <input id="nome" placeholder="Nome completo" aria-label="Nome completo" autocomplete="name" minlength="2" maxlength="120" required>
+      </div>
+      <div class="caixa-texto">
+        <input id="email" type="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
+      </div>
+      <div class="caixa-texto">
+        <input id="senha" type="password" placeholder="Senha (mínimo de 8 caracteres)" aria-label="Senha (mínimo de 8 caracteres)" autocomplete="new-password" minlength="8" required>
+      </div>
+      <details>
+        <summary>Informações opcionais do perfil</summary>
+        <div class="caixa-texto">
+          <label for="nascimento">Nascimento</label>
+          <input type="date" id="nascimento" autocomplete="bday">
+        </div>
+        <div class="caixa-data">
+          <input id="ddd" placeholder="DDD" aria-label="DDD" inputmode="numeric" maxlength="2" autocomplete="tel-area-code">
+          <input id="telefone" placeholder="Telefone" aria-label="Telefone" inputmode="numeric" maxlength="10" autocomplete="tel-local">
+        </div>
+        <div class="caixa-texto">
+          <input id="cpf" placeholder="CPF" aria-label="CPF" inputmode="numeric" maxlength="14">
+        </div>
+        <div class="caixa-texto">
+          <input id="cep" placeholder="CEP" aria-label="CEP" inputmode="numeric" maxlength="9" autocomplete="postal-code">
+        </div>
+        <div class="caixa-texto">
+          <input id="endereco" placeholder="Endereço" aria-label="Endereço" maxlength="200" autocomplete="address-line1">
+        </div>
+        <div class="caixa-data">
+          <input id="bairro" placeholder="Bairro" aria-label="Bairro" maxlength="100">
+          <input id="cidade" placeholder="Cidade" aria-label="Cidade" maxlength="100" autocomplete="address-level2">
+          <input id="uf" placeholder="UF" aria-label="UF" maxlength="2" autocomplete="address-level1">
+        </div>
+        <div class="caixa-texto">
+          <input id="numero" placeholder="Número" aria-label="Número" maxlength="20">
+        </div>
+      </details>
+      <button type="submit" class="login" id="enviar">Cadastrar</button>
+    </form>
+    <p id="mensagem" role="status"></p>
+  </main>
+  <script type="module" src="/src/pages/cadastro.js"></script>
+</body>
+</html>

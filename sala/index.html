@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espaço — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/sala.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/" class="logo-link"><img src="/assets/roomtowork-logo.png" alt="RoomToWORK"></a></h1>
+    <nav id="navLinks" aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/anunciar/">Anunciar espaço</a>
+      <a href="/login/" class="login-btn">Entrar</a>
+    </nav>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <p id="estado" class="estado-pagina" role="status">Carregando espaço…</p>
+  <main class="produto-card" id="sala" hidden>
+    <div class="produto-galeria">
+      <div class="produto-imagem-container">
+        <img id="imagemPrincipal" class="produto-imagem" alt="">
+      </div>
+      <div class="produto-thumbs" id="miniaturas"></div>
+    </div>
+    <div class="produto-info">
+      <h2 id="nomeSala"></h2>
+      <p class="produto-descricao" id="descricao"></p>
+      <p class="produto-descricao" id="local"></p>
+      <p class="produto-descricao" id="capacidade"></p>
+      <p class="produto-descricao" id="tomadas"></p>
+      <p class="produto-descricao" id="mesas"></p>
+      <div class="seletor-data">
+        <p class="seletor-data-label">Período da reserva</p>
+        <button type="button" class="seletor-data-input" id="seletorDataInput" aria-expanded="false" aria-controls="calendarioPopup">
+          <span id="textoData">Selecione as datas</span>
+          <span class="icone-calendario" aria-hidden="true">📅</span>
+        </button>
+        <div class="calendario-popup" id="calendarioPopup">
+          <div class="calendario-header">
+            <button type="button" id="mesAnterior" aria-label="Mês anterior">‹</button>
+            <span id="mesAtualLabel"></span>
+            <button type="button" id="proximoMes" aria-label="Próximo mês">›</button>
+          </div>
+          <div class="calendario-dias-semana" aria-hidden="true">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="calendario-grid" id="calendarioGrid"></div>
+          <div class="calendario-footer">
+            <small id="calendarioInfo" role="status">Selecione a data de início.</small>
+            <button type="button" id="limparDatas">Limpar</button>
+          </div>
+        </div>
+      </div>
+      <p class="produto-preco"><strong id="preco"></strong> <span>/dia</span></p>
+      <button type="button" class="btn-comprar" id="continuar" disabled>Continuar para reserva</button>
+      <p id="avisoReserva" role="status"></p>
+    </div>
+  </main>
+
+  <footer><p>&copy; 2026 RoomToWORK</p></footer>
+  <script type="module" src="/src/pages/sala.js"></script>
+</body>
+</html>

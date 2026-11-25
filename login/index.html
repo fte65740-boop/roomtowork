@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/formularios.css">
+</head>
+<body>
+  <main class="container container-login">
+    <a class="link-voltar" href="/">Voltar ao catálogo</a>
+    <h1 id="titulo">Entrar no RoomToWORK</h1>
+    <form id="formLogin">
+      <div class="caixa-texto" id="campoEmail">
+        <input id="email" type="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
+      </div>
+      <div class="caixa-texto" id="campoSenha">
+        <input id="senha" type="password" placeholder="Senha" aria-label="Senha" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="login" id="enviar">Entrar</button>
+    </form>
+    <p id="mensagem" role="status"></p>
+    <p id="linksConta" class="links-conta">
+      <a id="recuperar" href="/login/?recuperar=1">Esqueci minha senha</a>
+      <a id="cadastro" href="/cadastro/">Cadastre-se</a>
+    </p>
+    <a id="voltarLogin" hidden href="/login/">Voltar ao login</a>
+  </main>
+  <script type="module" src="/src/pages/login.js"></script>
+</body>
+</html>

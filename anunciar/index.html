@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anunciar espaço — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/formularios.css">
+  <link rel="stylesheet" href="/src/styles/anunciar.css">
+</head>
+<body>
+  <main class="container">
+    <a class="link-voltar" href="/">Voltar ao catálogo</a>
+    <section id="meusAnuncios" hidden>
+      <h2>Meus anúncios</h2>
+      <p id="estadoAnuncios" role="status">Carregando anúncios…</p>
+      <ul id="listaAnuncios"></ul>
+      <button type="button" id="novoAnuncio">Anunciar novo espaço</button>
+    </section>
+    <h1>Anunciar espaço</h1>
+    <p id="estado" role="status">Verificando sessão…</p>
+    <form id="formSala" hidden>
+      <div class="caixa-texto">
+        <label for="telefoneContato">WhatsApp com DDD</label>
+        <input id="telefoneContato" type="tel" inputmode="numeric" maxlength="15" autocomplete="tel" required>
+      </div>
+      <div class="caixa-texto">
+        <label for="titulo">Nome do espaço</label>
+        <input id="titulo" minlength="2" maxlength="120" required>
+      </div>
+      <div class="caixa-texto">
+        <label for="tipo">Tipo de espaço</label>
+        <select id="tipo" required>
+          <option value="">Selecione o tipo</option>
+          <option value="privativa">Sala privativa</option>
+          <option value="compartilhada">Estação compartilhada</option>
+          <option value="reuniao">Sala de reunião</option>
+          <option value="estudio">Estúdio criativo</option>
+        </select>
+      </div>
+      <div class="caixa-texto">
+        <label for="preco">Diária (R$)</label>
+        <input type="number" id="preco" min="1" max="300" step="0.01" required>
+      </div>
+      <div class="caixa-texto caixa-alta">
+        <textarea id="descricao" placeholder="Descrição do espaço" aria-label="Descrição do espaço" rows="3" minlength="2" maxlength="2000" required></textarea>
+      </div>
+      <div class="caixa-texto">
+        <input id="cep" placeholder="CEP" aria-label="CEP" inputmode="numeric" maxlength="9" autocomplete="postal-code" required>
+      </div>
+      <div class="caixa-texto">
+        <input id="endereco" placeholder="Endereço" aria-label="Endereço" maxlength="200" autocomplete="address-line1" required>
+      </div>
+      <div class="caixa-data">
+        <input id="bairro" placeholder="Bairro" aria-label="Bairro" maxlength="100" required>
+        <input id="cidade" placeholder="Cidade" aria-label="Cidade" maxlength="100" autocomplete="address-level2">
+        <input id="uf" placeholder="UF" aria-label="UF" maxlength="2" autocomplete="address-level1">
+      </div>
+      <div class="caixa-data">
+        <input id="numero" placeholder="Número" aria-label="Número" maxlength="20" required>
+        <input id="complemento" placeholder="Complemento" aria-label="Complemento" maxlength="120" autocomplete="address-line2">
+      </div>
+      <div class="caixa-data">
+        <label>Tomadas <input type="number" id="tomadas" min="0" max="999" value="0"></label>
+        <label>Mesas <input type="number" id="mesas" min="0" max="999" value="0"></label>
+        <label>Capacidade <input type="number" id="capacidade" min="1" max="9999" required></label>
+      </div>
+      <div class="area-fotos" id="secaoFotos">
+        <label for="fotos" class="upload-fotos" id="areaUpload">
+          <span>Escolha ou arraste fotos</span>
+          <small id="contadorFotos" aria-live="polite">0 de 6 fotos</small>
+          <small>JPG, PNG ou WebP de até 5 MB por foto</small>
+        </label>
+        <input type="file" id="fotos" class="visualmente-oculto" accept="image/jpeg,image/png,image/webp" multiple>
+        <div class="lista-fotos" id="listaFotos"></div>
+      </div>
+      <button type="submit" class="login" id="publicar">Publicar espaço</button>
+      <p id="mensagem" role="status"></p>
+    </form>
+  </main>
+  <script type="module" src="/src/pages/anunciar.js"></script>
+</body>
+</html>

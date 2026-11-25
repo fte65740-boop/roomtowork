@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reserva — RoomToWORK</title>
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/checkout.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/" class="logo-link"><img src="/assets/roomtowork-logo.png" alt="RoomToWORK"></a></h1>
+    <nav id="navLinks" aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/anunciar/">Anunciar espaço</a>
+      <a href="/login/" class="login-btn">Entrar</a>
+    </nav>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="checkout-titulo">
+    <h2>Confirme sua reserva</h2>
+    <p>Confira o período e escolha uma forma de pagamento para a demonstração.</p>
+  </div>
+  <p id="estado" class="estado-pagina" role="status">Carregando reserva…</p>
+  <main id="checkout" class="checkout" hidden>
+    <section class="painel">
+      <form id="formReserva">
+        <h3>Forma de pagamento simulada</h3>
+        <div class="metodos" role="radiogroup" aria-label="Forma de pagamento simulada">
+          <div class="metodo">
+            <input type="radio" name="metodo" id="m-credito" value="credito" checked>
+            <label for="m-credito">Crédito</label>
+          </div>
+          <div class="metodo">
+            <input type="radio" name="metodo" id="m-debito" value="debito">
+            <label for="m-debito">Débito</label>
+          </div>
+          <div class="metodo">
+            <input type="radio" name="metodo" id="m-pix" value="pix">
+            <label for="m-pix">Pix</label>
+          </div>
+          <div class="metodo">
+            <input type="radio" name="metodo" id="m-boleto" value="boleto">
+            <label for="m-boleto">Boleto</label>
+          </div>
+        </div>
+        <p class="seguranca">Demonstração acadêmica. A operação registra a reserva sem cobrança.</p>
+        <button type="submit" class="btn-pagar" id="confirmar" disabled>Confirmar reserva</button>
+        <a id="entrar" class="voltar" hidden>Entrar para reservar</a>
+        <p id="mensagem" role="status"></p>
+      </form>
+      <a id="voltar" href="/" class="voltar">‹ Voltar para o espaço</a>
+    </section>
+    <aside class="painel resumo">
+      <h3>Resumo da reserva</h3>
+      <img class="resumo-imagem" id="foto" alt="">
+      <h4 id="nome"></h4>
+      <ul class="resumo-lista">
+        <li><span>Local</span><span id="local"></span></li>
+        <li><span>Capacidade máxima</span><span id="capacidade"></span></li>
+        <li><span>Tomadas</span><span id="tomadas"></span></li>
+        <li><span>Mesas</span><span id="mesas"></span></li>
+        <li><span>Período</span><span id="periodo"></span></li>
+      </ul>
+      <div class="resumo-linhas"><div><span id="calculo"></span></div></div>
+      <div class="resumo-total"><span>Total</span><strong id="total"></strong></div>
+    </aside>
+  </main>
+  <dialog id="confirmacao" class="confirmacao-caixa" aria-labelledby="tituloConfirmacao">
+    <h2 id="tituloConfirmacao">Reserva confirmada</h2>
+    <p id="detalhesConf"></p>
+    <p id="codigo"></p>
+    <a class="btn-pagar" href="/reservas/">Ver minhas reservas</a>
+  </dialog>
+  <footer><p>&copy; 2026 RoomToWORK</p></footer>
+  <script type="module" src="/src/pages/checkout.js"></script>
+</body>
+</html>

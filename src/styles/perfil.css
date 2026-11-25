@@ -1,0 +1,16 @@
+.perfil h2 { color: var(--azul); font-size: 22px; margin: 28px 0 14px; }
+.perfil form > label, .perfil-linha label { display: block; margin: 15px 0 6px; font-weight: 600; }
+.perfil input[readonly] { background: #eef3ff; color: #555; }
+.perfil-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.perfil-linha > div { min-width: 0; }
+.perfil-linha input#uf { width: 100%; }
+.perfil-link, .perfil-navegacao button {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 40px;
+  padding: 9px 16px; border: 2px solid var(--azul); border-radius: 30px;
+  font: inherit; font-weight: 700; cursor: pointer;
+}
+.perfil-link { background: var(--azul); color: #fff; text-decoration: none; }
+.perfil-navegacao { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 25px; }
+.perfil-navegacao button { background: #fff; color: var(--azul); }
+.perfil :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+@media (max-width: 380px) { .perfil-linha { grid-template-columns: 1fr; gap: 0; } }
