@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pagamento — Room2WORK</title>
-<link rel="stylesheet" href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/Salas/cssbase/produto.css">
-<link rel="stylesheet" href="checkout.css">
+<link rel="stylesheet" href="../../cssbase/produto.css">
+<link rel="stylesheet" href="checkout-sala-farol.css">
 </head>
 <body>
 
 <header>
   <h1>
-    <a href="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html" class="logo-link">
-      <img src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/room2wrk-logo.png" alt="Room2WORK Logo">
+    <a href="../../../quartos/quartos.html" class="logo-link">
+      <img src="../../../imagens/room2wrk-logo.png" alt="Room2WORK Logo">
     </a>
   </h1>
 
   <nav id="navLinks">
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html">Início</a>
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/cadastro%20quarto/cadastroquarto.html">Cadastrar Quarto</a>
-    <a href="file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/login/login.html" class="login-btn">Login</a>
+    <a href="../../../quartos/quartos.html">Início</a>
+    <a href="../../../cadastro-quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="../../../login/login.html" class="login-btn">Login</a>
   </nav>
 
   <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -124,27 +124,27 @@
   <!-- ===== Coluna direita: resumo ===== -->
   <aside class="painel resumo">
     <h3>Resumo da reserva</h3>
-    <img class="resumo-imagem" id="rImagem" src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg" alt="">
-    <h4 id="rNome">Ateliê Vento</h4>
+    <img class="resumo-imagem" id="rImagem" src="../imagens-sala-farol/escritorio5.jpg" alt="">
+    <h4 id="rNome">Sala Farol</h4>
 
     <div class="aviso-datas" id="avisoDatas">
       Nenhuma data foi escolhida. Volte para a sala e selecione o período da reserva.
     </div>
 
     <ul class="resumo-lista">
-      <li><span>Local</span><span id="rLocal">Indaiá</span></li>
-      <li><span>Capacidade máxima</span><span id="rCapacidade">5 pessoas</span></li>
-      <li><span>Tomadas</span><span id="rTomadas">5</span></li>
+      <li><span>Local</span><span id="rLocal">Imperador</span></li>
+      <li><span>Capacidade máxima</span><span id="rCapacidade">2 pessoas</span></li>
+      <li><span>Tomadas</span><span id="rTomadas">4</span></li>
       <li><span>Mesas</span><span id="rMesas">2</span></li>
       <li><span>Período</span><span id="rPeriodo">—</span></li>
     </ul>
 
     <div class="resumo-linhas">
-      <div><span id="rCalculo">R$ 170,00 × 1 dia</span><span id="rSubtotal">R$ 170,00</span></div>
+      <div><span id="rCalculo">R$ 130,00 × 1 dia</span><span id="rSubtotal">R$ 130,00</span></div>
     </div>
     <div class="resumo-total">
       <span>Total</span>
-      <strong id="rTotal">R$ 170,00</strong>
+      <strong id="rTotal">R$ 130,00</strong>
     </div>
   </aside>
 
@@ -166,17 +166,17 @@
 </footer>
 
 <script>
-/* ── Dados da sala (vêm da URL; se faltar algo, usa o Ateliê Vento) ── */
+/* ── Dados da sala (vêm da URL; se faltar algo, usa o Sala Farol) ── */
 const params = new URLSearchParams(location.search);
 
 const sala = {
-  nome:       params.get('nome')       || 'Ateliê Vento',
-  local:      params.get('local')      || 'Indaiá',
-  capacidade: params.get('capacidade') || '5',
-  tomadas:    params.get('tomadas')    || '5',
+  nome:       params.get('nome')       || 'Sala Farol',
+  local:      params.get('local')      || 'Imperador',
+  capacidade: params.get('capacidade') || '2',
+  tomadas:    params.get('tomadas')    || '4',
   mesas:      params.get('mesas')      || '2',
-  preco:      parseFloat(params.get('preco')) || 170,
-  imagem:     params.get('imagem')     || 'C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg',
+  preco:      parseFloat(params.get('preco')) || 130,
+  imagem:     params.get('imagem')     || '../imagens-sala-farol/escritorio5.jpg',
   inicio:     params.get('inicio'),   // formato AAAA-MM-DD
   fim:        params.get('fim')
 };
@@ -371,7 +371,7 @@ $('btnPagar').addEventListener('click', () => {
 });
 
 $('btnConcluir').addEventListener('click', () => {
-  window.location.href = 'file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html';
+  window.location.href = '../../../quartos/quartos.html';
 });
 
 atualizarMetodo();

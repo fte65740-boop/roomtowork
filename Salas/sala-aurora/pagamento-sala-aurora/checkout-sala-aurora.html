@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pagamento — Room2WORK</title>
 <link rel="stylesheet" href="../../cssbase/produto.css">
-<link rel="stylesheet" href="../pagamento-sala-aurora/checkout-sala-aurora.css">
+<link rel="stylesheet" href="checkout-sala-aurora.css">
 </head>
 <body>
 
@@ -125,27 +125,27 @@
   <!-- ===== Coluna direita: resumo ===== -->
   <aside class="painel resumo">
     <h3>Resumo da reserva</h3>
-    <img class="resumo-imagem" id="rImagem" src="C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg" alt="">
-    <h4 id="rNome">Ateliê Vento</h4>
+    <img class="resumo-imagem" id="rImagem" src="../imagens-sala-aurora/escritorio1.jpg" alt="">
+    <h4 id="rNome">Sala Aurora</h4>
 
     <div class="aviso-datas" id="avisoDatas">
       Nenhuma data foi escolhida. Volte para a sala e selecione o período da reserva.
     </div>
 
     <ul class="resumo-lista">
-      <li><span>Local</span><span id="rLocal">Indaiá</span></li>
-      <li><span>Capacidade máxima</span><span id="rCapacidade">5 pessoas</span></li>
-      <li><span>Tomadas</span><span id="rTomadas">5</span></li>
-      <li><span>Mesas</span><span id="rMesas">2</span></li>
+      <li><span>Local</span><span id="rLocal">Centro</span></li>
+      <li><span>Capacidade máxima</span><span id="rCapacidade">4 pessoas</span></li>
+      <li><span>Tomadas</span><span id="rTomadas">4</span></li>
+      <li><span>Mesas</span><span id="rMesas">1</span></li>
       <li><span>Período</span><span id="rPeriodo">—</span></li>
     </ul>
 
     <div class="resumo-linhas">
-      <div><span id="rCalculo">R$ 170,00 × 1 dia</span><span id="rSubtotal">R$ 170,00</span></div>
+      <div><span id="rCalculo">R$ 70,00 × 1 dia</span><span id="rSubtotal">R$ 70,00</span></div>
     </div>
     <div class="resumo-total">
       <span>Total</span>
-      <strong id="rTotal">R$ 170,00</strong>
+      <strong id="rTotal">R$ 70,00</strong>
     </div>
   </aside>
 
@@ -167,17 +167,17 @@
 </footer>
 
 <script>
-/* ── Dados da sala (vêm da URL; se faltar algo, usa o Ateliê Vento) ── */
+/* ── Dados da sala (vêm da URL; se faltar algo, usa o Sala Aurora) ── */
 const params = new URLSearchParams(location.search);
 
 const sala = {
-  nome:       params.get('nome')       || 'Ateliê Vento',
-  local:      params.get('local')      || 'Indaiá',
-  capacidade: params.get('capacidade') || '5',
-  tomadas:    params.get('tomadas')    || '5',
-  mesas:      params.get('mesas')      || '2',
-  preco:      parseFloat(params.get('preco')) || 170,
-  imagem:     params.get('imagem')     || 'C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/imagens/escritorio8.jpg',
+  nome:       params.get('nome')       || 'Sala Aurora',
+  local:      params.get('local')      || 'Centro',
+  capacidade: params.get('capacidade') || '4',
+  tomadas:    params.get('tomadas')    || '4',
+  mesas:      params.get('mesas')      || '1',
+  preco:      parseFloat(params.get('preco')) || 70,
+  imagem:     params.get('imagem')     || '../imagens-sala-aurora/escritorio1.jpg',
   inicio:     params.get('inicio'),   // formato AAAA-MM-DD
   fim:        params.get('fim')
 };
@@ -372,7 +372,7 @@ $('btnPagar').addEventListener('click', () => {
 });
 
 $('btnConcluir').addEventListener('click', () => {
-  window.location.href = 'file:///C:/Users/FRANCISCOTEREZANESTE/Desktop/sitetcc/quartos/quartos.html';
+  window.location.href = '../../../quartos/quartos.html';
 });
 
 atualizarMetodo();

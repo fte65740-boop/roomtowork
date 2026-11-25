@@ -10,14 +10,14 @@
 
 <header>
   <h1>
-    <a href="../quartos/quartos.html" class="logo-link">
+    <a href="../../quartos/quartos.html" class="logo-link">
       <img src="../../imagens/room2wrk-logo.png" alt="Room2WORK Logo">
     </a>
   </h1>
 
   <nav id="navLinks">
     <a href="../../quartos/quartos.html">Início</a>
-    <a href="../roomtowork/cadastro-quarto/cadastroquarto.html">Cadastrar Quarto</a>
+    <a href="../../cadastro-quarto/cadastroquarto.html">Cadastrar Quarto</a>
     <a href="../../login/login.html" class="login-btn">Login</a>
   </nav>
 
@@ -105,7 +105,7 @@ function finalizarCompra(){
     fim: iso(dataFim)
   });
 
-  window.location.href='../hub-colmeia/pagamento-hub-colmeia/checkout-hub-colmeia.html?' + q.toString();
+  window.location.href = '../hub-colmeia/pagamento-hub-colmeia/checkout-hub-colmeia.html?' + q.toString();
 }
 
   /* ── Trocar imagem da galeria ── */
@@ -151,7 +151,8 @@ const calendarioGrid = document.getElementById('calendarioGrid');
 const textoData      = document.getElementById('textoData');
 const calendarioInfo = document.getElementById('calendarioInfo');
 
-let dataExibida = new Date(); // mês exibido no calendário
+const _hoje = new Date();
+let dataExibida = new Date(_hoje.getFullYear(), _hoje.getMonth(), 1); // dia 1 evita pular meses
 let dataInicio = null;
 let dataFim = null;
 
@@ -198,7 +199,6 @@ function renderizarCalendario(){
       btn.disabled = true;
     }
 
-
     // marca visualmente início, fim e intervalo
     const ehInicio = dataInicio && dataAtual.getTime() === dataInicio.getTime();
     const ehFim    = dataFim    && dataAtual.getTime() === dataFim.getTime();
@@ -211,10 +211,7 @@ function renderizarCalendario(){
       btn.classList.add('no-intervalo');
     }
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // evita fechar pop-up
-      selecionarDia(dataAtual);
-    });
+    btn.addEventListener('click', () => selecionarDia(dataAtual));
     calendarioGrid.appendChild(btn);
   }
 }
@@ -249,6 +246,9 @@ seletorInput.addEventListener('click', (e) => {
   calendarioPopup.classList.toggle('aberto');
   e.stopPropagation();
 });
+
+// evita fechar o popup ao clicar num dia (o botão é recriado e sai do DOM)
+calendarioPopup.addEventListener('click', (e) => e.stopPropagation());
 
 document.addEventListener('click', (e) => {
   if(!calendarioPopup.contains(e.target) && !seletorInput.contains(e.target)){
